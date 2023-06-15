@@ -8,17 +8,17 @@ class ItemDataWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 6.0),
+      margin: EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
           Text(
             "$title: ",
-            style: TextStyle(
+            style: TextStyle(fontSize: 24,
               color: Colors.black45,
             ),
           ),
           Text(
-            data,
+            data,style: TextStyle(fontSize: 24),
           ),
         ],
       ),

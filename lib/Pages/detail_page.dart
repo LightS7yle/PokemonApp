@@ -6,16 +6,15 @@ import '../UI/general/colors.dart';
 import '../UI/widgets/item_type_widget.dart';
 
 class DetailPage extends StatelessWidget {
-
   PokemonModels pokemon;
 
-  DetailPage({required this.pokemon,});
-
+  DetailPage({
+    required this.pokemon,
+  });
   @override
   Widget build(BuildContext context) {
-
     double height = MediaQuery.of(context).size.height;
-
+    print(pokemon.candyCount);
     return Scaffold(
       backgroundColor: colorsPokemon[pokemon.type.first],
       appBar: AppBar(
@@ -48,6 +47,7 @@ class DetailPage extends StatelessWidget {
               children: [
                 Column(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       pokemon.name,
@@ -61,7 +61,16 @@ class DetailPage extends StatelessWidget {
                       height: 6.0,
                     ),
                     Row(
-                      children: pokemon.type.map((e) => ItemTypeWidget(text: e)).toList(),
+                      children: pokemon.type
+                          .map((e) => Row(
+                                children: [
+                                  ItemTypeWidget(text: e),
+                                  SizedBox(
+                                    width: 12,
+                                  )
+                                ],
+                              ))
+                          .toList(),
                     ),
                   ],
                 ),
@@ -108,6 +117,9 @@ class DetailPage extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
+                            SizedBox(
+                              height: 16,
+                            ),
                             ItemDataWidget(
                               title: "Height",
                               data: pokemon.height,
@@ -122,8 +134,28 @@ class DetailPage extends StatelessWidget {
                             ),
                             ItemDataWidget(
                               title: "Candy Count",
-                              data : pokemon.candyCount ,
+                              data: pokemon.candyCount == 'null'
+                                  ? 'No se encuentra'
+                                  : pokemon.candyCount,
                             ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              "Weaknesses",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(height: 16,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: pokemon.weaknesses
+                                  .map((e) =>
+                                  ItemTypeWidget(text: e,isWeak: true)
+                                )
+                                  .toList(),
+                            )
                           ],
                         ),
                       ),
@@ -132,9 +164,7 @@ class DetailPage extends StatelessWidget {
                         top: -90.0,
                         child: Align(
                           alignment: Alignment.topCenter,
-                          child: Image.network(
-                              pokemon.img
-                          ),
+                          child: Image.network(pokemon.img),
                         ),
                       ),
                     ],

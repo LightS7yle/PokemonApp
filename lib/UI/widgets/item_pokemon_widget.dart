@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_codigo_pokedex/Pages/detail_page.dart';
+import 'package:flutter_codigo_pokedex/UI/general/colors.dart';
 import 'package:flutter_codigo_pokedex/models/pokemon_models.dart';
 
 import 'item_type_widget.dart';
@@ -24,7 +25,7 @@ class ItemPokemonWidget extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-            color: Color(0xff4CCFB2), borderRadius: BorderRadius.circular(18)),
+            color: colorsPokemon[pokemon.type.first], borderRadius: BorderRadius.circular(18)),
         child: Stack(
           children: [
             Positioned(

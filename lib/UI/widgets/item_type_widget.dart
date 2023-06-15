@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_codigo_pokedex/UI/general/colors.dart';
 
 class ItemTypeWidget extends StatelessWidget {
 String text;
-ItemTypeWidget({required this.text});
+bool isWeak ;
+ItemTypeWidget({required this.text,this.isWeak = false});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 6),
-      padding: EdgeInsets.symmetric(horizontal: 14, vertical: 4),
+      padding: isWeak == false ? EdgeInsets.symmetric(horizontal: 14, vertical: 4): EdgeInsets.symmetric(horizontal: 28,vertical: 8),
       decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.27),
+          color: isWeak == false ? Colors.white.withOpacity(0.27): colorsPokemon[text],
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
